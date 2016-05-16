@@ -1,0 +1,7 @@
+{% block checkbox_widget %}
+    {% spaceless %}
+        <label class="btn btn-primary active">
+            <input type="checkbox"  autocomplete="off" {{ block('widget_attributes') }}{% if value is defined %} {% endif %}{% if checked %} checked {% endif %} />Publier l'annonce
+        </label>
+    {% endspaceless %}
+{% endblock %}

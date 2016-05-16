@@ -1,0 +1,40 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/add.html.twig #}
+
+{% extends "OCPlatformBundle::layout.html.twig" %}
+
+{% block mycss %}
+    {% stylesheets 
+    '@OCPlatformBundle/Resources/public/css/bootstrap-datepicker3.min.css'
+    '@OCPlatformBundle/Resources/public/css/bootstrap-switch.min.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+{% endblock %}
+
+{% block title %}
+    Ajouter une annonce - {{ parent() }}
+{% endblock %}
+
+{% block ocplatform_body %}
+
+    <h2>Ajouter une annonce</h2>
+
+    {{ include("OCPlatformBundle:Advert:form.html.twig") }}
+
+    <p>
+        Attention : cette annonce sera ajoutée directement
+        sur la page d'accueil après validation du formulaire.
+    </p>
+
+{% endblock %}
+
+{% block myjs %}
+    {% javascripts
+    '@OCPlatformBundle/Resources/public/js/datepicker/bootstrap-datepicker.min.js'
+    '@OCPlatformBundle/Resources/public/js/datepicker/bootstrap-datepicker.fr.min.js'
+    '@OCPlatformBundle/Resources/public/js/datepicker/datepicker_params.js'
+    '@OCPlatformBundle/Resources/public/js/switch/bootstrap-switch.min.js'
+    '@OCPlatformBundle/Resources/public/js/switch/bootstrap_switch_params.js'
+    '@OCPlatformBundle/Resources/public/js/advert-add-remove-categories.js' %}
+    <script src="{{ asset_url }}" charset="UTF-8"></script>
+    {% endjavascripts %}
+{% endblock %}

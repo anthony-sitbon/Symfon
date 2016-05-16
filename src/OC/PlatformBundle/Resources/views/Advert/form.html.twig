@@ -1,0 +1,107 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/form.html.twig #}
+
+{# Cette vue n'hérite de personne, elle sera incluse par d'autres vues qui,
+   elles, hériteront probablement du layout. Je dis « probablement » car,
+   ici pour cette vue, on n'en sait rien et c'est une info qui ne nous concerne pas. #}
+
+<h3>Formulaire d'annonce</h3>
+
+<div class="well">
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+    {# Les erreurs générales du formulaire. #}
+    {{ form_errors(form) }}
+
+    <div class="form-group">
+        {# Génération du label. #}
+        {{ form_label(form.title, "Titre de l'annonce", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+        {# Affichage des erreurs pour ce champ précis. #}
+        {{ form_errors(form.title) }}
+
+        <div class="col-sm-4">
+            {# Génération de l'input. #}
+            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    {# Idem pour un autre champ. #}
+    <div class="form-group">
+        {{ form_label(form.content, "Contenu de l'annonce", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        {{ form_errors(form.content) }}
+        <div class="col-sm-4">
+            {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    {% if form.date is defined %}
+        <div class="form-group">
+            {{ form_label(form.date, "Date de l'annonce", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.date) }}
+            <div id="sandbox-container" class="col-sm-4">
+                {{ form_widget(form.date) }}
+            </div>
+        </div>
+    {% endif %}
+    <div class="form-group">
+        {{ form_label(form.author, "Auteur de l'annonce", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        {{ form_errors(form.author) }}
+        <div class="col-sm-4">
+            {{ form_widget(form.author, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.image, "Image de l'annonce", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        {{ form_errors(form.image) }}
+        {% if form.image.url is defined %}
+            <div class="col-sm-4">
+                {{ form_widget(form.image.url, {'attr': {'class': 'form-control', 'placeholder': 'Url de l\'image'}}) }}
+            </div>
+        {% endif %}
+        {% if form.image.alt is defined %}
+            <div class="col-sm-4">
+            {{ form_widget(form.image.alt, {'attr': {'class': 'form-control', 'placeholder': 'Alt de l\'image'}}) }}
+            </div>
+        {% endif %}
+        {% if form.image.file is defined %}
+            <div class="col-sm-4">
+            {{ form_widget(form.image.file) }}
+            </div>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.categories, "Catégories de l'annonce", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+        <div class="form-group">
+            {% for categoriesField in form.categories %}
+                <div class="media-heading col-sm-12 col-xs-12">
+                    <div class="col-xs-6">
+                        {{ form_label(categoriesField) }}
+                    </div>
+                    <div class="col-xs-6">
+                        {{ form_widget(categoriesField) }}
+                    </div>
+                    {{ form_errors(categoriesField) }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% if form.published is defined %}
+        <div class="form-group">
+            {{ form_label(form.published, "Publier l'annonce", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.published) }}
+            <div class="col-sm-4 switch">
+                {{ form_widget(form.published, {'attr': {'class': 'checkbox center-block', 'style': 'width: 24px;height: 34px;'}}) }}
+            </div>
+        </div>
+    {% endif %}
+
+    {{ form_rest(form) }}
+
+    {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-10">
+            <input type="submit" class="btn btn-primary" value="Valider" />
+        </div>
+    </div>
+
+    {# Fermeture de la balise <form> du formulaire HTML #}
+    {{ form_end(form) }}
+</div>
